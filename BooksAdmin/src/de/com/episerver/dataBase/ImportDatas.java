@@ -17,26 +17,33 @@ public class ImportDatas {
 	
 	private Datas datas = new Datas();
 	private static String caracter = ";";
+	private static String encoding = "ISO-8859-1";
 	
-	public Datas importDocs() throws Exception{
-		ZipFile zipFile = new ZipFile("data.zip");
-		ZipEntry autorsFile = zipFile.getEntry("data/autoren.csv");
-		ZipEntry booksFile = zipFile.getEntry("data/buecher.csv");
-		ZipEntry magazinesFile = zipFile.getEntry("data/zeitschriften.csv");
+	public String importDocs(){
 		
-		importAutors(zipFile, autorsFile);
-		importBooks(zipFile, booksFile);
-		importMagazines(zipFile, magazinesFile);
+		try {
+			ZipFile zipFile = new ZipFile("data.zip");
+			ZipEntry autorsFile = zipFile.getEntry("data/autoren.csv");
+			ZipEntry booksFile = zipFile.getEntry("data/buecher.csv");
+			ZipEntry magazinesFile = zipFile.getEntry("data/zeitschriften.csv");
+			
+			importAutors(zipFile, autorsFile);
+			importBooks(zipFile, booksFile);
+			importMagazines(zipFile, magazinesFile);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			return "ERROR";
+		}
 		
-		
-		
-		return getDatas();
+		return "SUCCESS";
 	}
 	
 	private void importAutors(ZipFile zipFile, ZipEntry file) throws Exception {
 		BufferedReader br = null;
 		String line = "";
-		br = new BufferedReader(new InputStreamReader(zipFile.getInputStream(file), "UTF-8"));
+		br = new BufferedReader(new InputStreamReader(zipFile.getInputStream(file), encoding));
 		br.readLine();
 		ArrayList<Autors> listAutors = new ArrayList<>();
 		while ((line = br.readLine()) != null) {
@@ -56,7 +63,7 @@ public class ImportDatas {
 	private void importBooks(ZipFile zipFile, ZipEntry file) throws Exception {
 		BufferedReader br = null;
 		String line = "";
-		br = new BufferedReader(new InputStreamReader(zipFile.getInputStream(file), "UTF-8"));
+		br = new BufferedReader(new InputStreamReader(zipFile.getInputStream(file), encoding));
 		br.readLine();
 		ArrayList<Books> listBooks = new ArrayList<>() ;
 		while ((line = br.readLine()) != null) {
@@ -78,7 +85,7 @@ public class ImportDatas {
 		BufferedReader br = null;
 		String line = "";
 		SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
-		br = new BufferedReader(new InputStreamReader(zipFile.getInputStream(file), "UTF-8"));
+		br = new BufferedReader(new InputStreamReader(zipFile.getInputStream(file), encoding));
 		br.readLine();
 		ArrayList<Magazines> listMagazines = new ArrayList<>();
 		while ((line = br.readLine()) != null) {

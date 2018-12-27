@@ -9,11 +9,13 @@ public class Main {
 	public static void main(String[] args) {
 		try {
 			ImportDatas importDatas = new ImportDatas();
-			Datas datas = importDatas.importDocs();
+			importDatas.importDocs();
+			Datas datas = importDatas.getDatas();
 			PrintInformations print = new PrintInformations(datas);
 			//print.listAllBooksMagazines();
-			print.printBooksMagazinesAutors("pr-rabe@optivo.de");
-			print.printBooksMagazinesIsbn("5554-5545-4518");
+			//print.printBooksMagazinesAutors("pr-rabe@optivo.de");
+			//print.printBooksMagazinesIsbn("5554-5545-4518");
+			System.out.println(print.printSortData());
 		} catch (Exception e) {
 			e.printStackTrace();
 			System.out.println(e.getMessage());

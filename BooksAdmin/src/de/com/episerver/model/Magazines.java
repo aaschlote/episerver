@@ -1,9 +1,10 @@
 package de.com.episerver.model;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.ArrayList;
 
-public class Magazines {
+public class Magazines implements Comparable<Magazines> {
 	
 	private String title;
 	private String isbnNumber;
@@ -40,6 +41,22 @@ public class Magazines {
 
 	public void setReleaseDate(Calendar releaseDate) {
 		this.releaseDate = releaseDate;
+	}
+	
+	public String toString() {
+		SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+		String emails = "";
+		for (Autors autors : listAutors) {
+			emails += " " + autors.getEmail();
+		}
+
+		return this.title + " " + this.isbnNumber + " " + emails + " "
+				+ format1.format(this.releaseDate.getTime());
+	}
+
+	@Override
+	public int compareTo(Magazines o) {
+		return getTitle().compareTo(o.getTitle());
 	}
 
 }

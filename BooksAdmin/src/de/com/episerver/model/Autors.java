@@ -13,7 +13,7 @@ public class Autors {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
+	 
 	public String getFirstName() {
 		return firstName;
 	}
@@ -28,6 +28,10 @@ public class Autors {
 	
 	public void setSurname(String surname) {
 		this.surname = surname;
+	}
+	
+	public String toString(){
+		return this.email + " " + this.firstName + " " + this.surname; 
 	}
 	
 	
