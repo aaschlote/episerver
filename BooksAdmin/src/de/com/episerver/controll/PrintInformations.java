@@ -42,7 +42,7 @@ public class PrintInformations {
 		for (Books books : getDatas().getListBooks()) {
 			for (Autors autors : books.getListAutors()) {
 				if (autors.getEmail().equalsIgnoreCase(emailAutor)) {
-					infoReturn += books.getTitle() + " \n";
+					infoReturn += books.getTitle();
 					break;
 				}
 			}
@@ -51,7 +51,7 @@ public class PrintInformations {
 		for (Magazines magazines : getDatas().getListMagazines()) {
 			for (Autors autors : magazines.getListAutors()) {
 				if (autors.getEmail().equalsIgnoreCase(emailAutor)) {
-					infoReturn += magazines.getTitle() + " \n";
+					infoReturn += magazines.getTitle();
 					break;
 				}
 			}
@@ -67,13 +67,13 @@ public class PrintInformations {
 		
 		for (Books books : getDatas().getListBooks()) {
 			if (books.getIsbnNumber().equalsIgnoreCase(isbnNumber)) {
-				infoReturn += books.getTitle() + " \n";
+				infoReturn += books.getTitle();
 			}
 		}
 
 		for (Magazines magazines : getDatas().getListMagazines()) {
 			if (magazines.getIsbnNumber().equalsIgnoreCase(isbnNumber)) {
-				infoReturn += magazines.getTitle() + " \n";
+				infoReturn += magazines.getTitle();
 			}
 		}
 		
